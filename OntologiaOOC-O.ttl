@@ -1,0 +1,73 @@
+@prefix : <http://example.com#>.
+@prefix gufo: <http://purl.org/nemo/gufo#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<http://example.com> rdf:type owl:Ontology;
+    owl:imports gufo:.
+:Class rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Class"@en.
+:ConcreteClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Concrete Class"@en.
+:AbstractClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Abstract Class"@en.
+:ExtendableClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Extendable Class"@en.
+:NonExtendableClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Non-Extendable Class"@en.
+:Superclass rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Superclass"@en.
+:Subclass rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Subclass"@en.
+:RootClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Root Class"@en.
+:NestedClass rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Nested Class"@en.
+:GenericClass rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Generic Class"@en.
+:TypeParameter rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Type Parameter"@en.
+:Nesting rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Nesting"@en.
+:InheritanceVisibility rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Inheritance Visibility"@en.
+:Inheritance rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Inheritance"@en.
+:ConcreteClass rdfs:subClassOf :Class.
+:ExtendableClass rdfs:subClassOf :Class.
+:NonExtendableClass rdfs:subClassOf :Class.
+:GenericClass rdfs:subClassOf :Class.
+:NestedClass rdfs:subClassOf :Class.
+:AbstractClass rdfs:subClassOf :ExtendableClass.
+:RootClass rdfs:subClassOf :ExtendableClass.
+:Superclass rdfs:subClassOf :ExtendableClass.
+:Subclass rdfs:subClassOf :Class.
+:contains rdf:type owl:ObjectProperty;
+    rdfs:domain :Class;
+    rdfs:range :Nesting;
+    rdfs:label "contains"@en.
+:nestedIn rdf:type owl:ObjectProperty;
+    rdfs:domain :Nesting;
+    rdfs:range :NestedClass;
+    rdfs:label "nested in"@en.
+:inheritedIn rdf:type owl:ObjectProperty;
+    rdfs:domain :Superclass;
+    rdfs:range :Inheritance.
+:subclassHasInheritance rdf:type owl:ObjectProperty;
+    rdfs:domain :Subclass;
+    rdfs:range :Inheritance.
+:completeDisjoint rdf:type owl:ObjectProperty;
+    rdfs:domain :ConcreteClass;
+    rdfs:range :AbstractClass;
+    rdfs:label "{complete, disjoint}"@en.
+:characterization rdf:type owl:ObjectProperty;
+    rdfs:domain :Inheritance;
+    rdfs:range :InheritanceVisibility;
+    rdfs:label "<<characterization>>"@en.
