@@ -1,0 +1,250 @@
+@prefix : <http://example.com#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.com#> .
+
+<http://example.com> rdf:type owl:Ontology ;
+                      owl:imports gufo: .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.com#classHasNesting
+:classHasNesting rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Class ;
+                 rdfs:range :Nesting .
+
+
+###  http://example.com#concreteClassHasAbstractClass
+:concreteClassHasAbstractClass rdf:type owl:ObjectProperty ;
+                               rdfs:domain :ConcreteClass ;
+                               rdfs:range :AbstractClass .
+
+
+###  http://example.com#inheritanceHasInheritanceVisibility
+:inheritanceHasInheritanceVisibility rdf:type owl:ObjectProperty ;
+                                     rdfs:domain :Inheritance ;
+                                     rdfs:range :InheritanceVisibility .
+
+
+###  http://example.com#nestingHasNestedClass
+:nestingHasNestedClass rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Nesting ;
+                       rdfs:range :NestedClass .
+
+
+###  http://example.com#subclassHasInheritance
+:subclassHasInheritance rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Subclass ;
+                        rdfs:range :Inheritance .
+
+
+###  http://example.com#superclassHasInheritance
+:superclassHasInheritance rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Superclass ;
+                          rdfs:range :Inheritance .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.com#AbstractClass
+:AbstractClass rdf:type owl:Class ;
+               rdfs:subClassOf :ExtendableClass ;
+               owl:disjointWith :ConcreteClass .
+
+
+###  http://example.com#Class
+:Class rdf:type owl:Class ;
+       rdfs:subClassOf gufo:FunctionalComplex .
+
+
+###  http://example.com#ConcreteClass
+:ConcreteClass rdf:type owl:Class ;
+               rdfs:subClassOf :Class .
+
+
+###  http://example.com#ExtendableClass
+:ExtendableClass rdf:type owl:Class ;
+                 rdfs:subClassOf :Class ;
+                 owl:disjointWith :NonExtendableClass .
+
+
+###  http://example.com#GenericClass
+:GenericClass rdf:type owl:Class ;
+              rdfs:subClassOf :Class .
+
+
+###  http://example.com#Inheritance
+:Inheritance rdf:type owl:Class ;
+             rdfs:subClassOf gufo:Relator .
+
+
+###  http://example.com#InheritanceVisibility
+:InheritanceVisibility rdf:type owl:Class ;
+                       rdfs:subClassOf gufo:Quality .
+
+
+###  http://example.com#NestedClass
+:NestedClass rdf:type owl:Class ;
+             rdfs:subClassOf :Class .
+
+
+###  http://example.com#Nesting
+:Nesting rdf:type owl:Class ;
+         rdfs:subClassOf gufo:Relator .
+
+
+###  http://example.com#NonExtendableClass
+:NonExtendableClass rdf:type owl:Class ;
+                    rdfs:subClassOf :Class .
+
+
+###  http://example.com#RootClass
+:RootClass rdf:type owl:Class ;
+           rdfs:subClassOf :ExtendableClass .
+
+
+###  http://example.com#Subclass
+:Subclass rdf:type owl:Class ;
+          rdfs:subClassOf :Class .
+
+
+###  http://example.com#Superclass
+:Superclass rdf:type owl:Class ;
+            rdfs:subClassOf :ExtendableClass .
+
+
+###  http://example.com#TypeParameter
+:TypeParameter rdf:type owl:Class ;
+               rdfs:subClassOf gufo:FunctionalComplex .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com#AbstractClass
+:AbstractClass rdf:type owl:NamedIndividual ,
+                        gufo:SubKind .
+
+
+###  http://example.com#Class
+:Class rdf:type owl:NamedIndividual ,
+                gufo:Kind .
+
+
+###  http://example.com#ConcreteClass
+:ConcreteClass rdf:type owl:NamedIndividual ,
+                        gufo:SubKind .
+
+
+###  http://example.com#ExtendableClass
+:ExtendableClass rdf:type owl:NamedIndividual ,
+                          gufo:SubKind .
+
+
+###  http://example.com#GenericClass
+:GenericClass rdf:type owl:NamedIndividual ,
+                       gufo:SubKind .
+
+
+###  http://example.com#Inheritance
+:Inheritance rdf:type owl:NamedIndividual ,
+                      gufo:Kind .
+
+
+###  http://example.com#InheritanceVisibility
+:InheritanceVisibility rdf:type owl:NamedIndividual ,
+                                gufo:Kind .
+
+
+###  http://example.com#NestedClass
+:NestedClass rdf:type owl:NamedIndividual ,
+                      gufo:Role .
+
+
+###  http://example.com#Nesting
+:Nesting rdf:type owl:NamedIndividual ,
+                  gufo:Kind .
+
+
+###  http://example.com#NonExtendableClass
+:NonExtendableClass rdf:type owl:NamedIndividual ,
+                             gufo:SubKind .
+
+
+###  http://example.com#RootClass
+:RootClass rdf:type owl:NamedIndividual ,
+                    gufo:SubKind .
+
+
+###  http://example.com#Subclass
+:Subclass rdf:type owl:NamedIndividual ,
+                   gufo:Role .
+
+
+###  http://example.com#Superclass
+:Superclass rdf:type owl:NamedIndividual ,
+                     gufo:Role .
+
+
+###  http://example.com#TypeParameter
+:TypeParameter rdf:type owl:NamedIndividual ,
+                        gufo:Kind .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:AbstractClass rdfs:label "Abstract Class"@en .
+
+
+:Class rdfs:label "Class"@en .
+
+
+:ConcreteClass rdfs:comment "Class describing an completely implementde abstraction."^^rdfs:Literal ;
+               rdfs:label "Concrete Class"@en .
+
+
+:ExtendableClass rdfs:label "Extendable Class"@en .
+
+
+:GenericClass rdfs:label "Generic Class"@en .
+
+
+:Inheritance rdfs:label "Inheritance"@en .
+
+
+:InheritanceVisibility rdfs:label "Inheritance Visibility"@en .
+
+
+:NestedClass rdfs:label "Nested Class"@en .
+
+
+:Nesting rdfs:label "Nesting"@en .
+
+
+:NonExtendableClass rdfs:label "Non-Extendable Class"@en .
+
+
+:RootClass rdfs:label "Root Class"@en .
+
+
+:Subclass rdfs:label "Subclass"@en .
+
+
+:Superclass rdfs:label "Superclass"@en .
+
+
+:TypeParameter rdfs:label "Type Parameter"@en .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
